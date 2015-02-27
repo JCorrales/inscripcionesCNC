@@ -13,17 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>
-            <%!
-            Date theDate = new Date();
-            Date getDate()
-            {
-                System.out.println( "In getDate() method" );
-                return theDate;
-            }
-            %>
-           Hello!  The time is now <%= getDate() %>
-           <jsp:include page="InsertAlumnForm.jsp"></jsp:include>
-        </h1>
+        <p>
+            <a href="InsertAlumnForm.jsp">insertar alumno</a><br>
+           <a href="InsertAsignaturaForm.jsp">insertar asignatura</a>
+        <p>
     </body>
 </html>

@@ -11,20 +11,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Insertar Alumno</title>
     </head>
     <body>
             <jsp:useBean id="alumno" class="modelos.Alumno" scope="session"></jsp:useBean>
             <jsp:setProperty name="alumno" property="*"/>
-            
+            <jsp:include page="InsertAlumnForm.jsp"/>
             <%
                 try{
                     AlumnoDao dao = new AlumnoDao();
-                    out.print(alumno.getCedula());
                     dao.insert(alumno);
+                    out.print("<br/><text>alumno insertada correctamente</text>");
                 }catch(Exception ex){
-                    out.print(ex.getMessage());
+                    out.print("<br/><text style=\"color:red\">"+ex.getMessage()+"</text>");
                 }
             %>
+            
     </body>
 </html>

@@ -7,6 +7,7 @@ package daos;
 
 import modelos.Asignatura;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,7 @@ public class AsignaturaDao {
         stm = conexion.createStatement();
         return stm.execute("insert into asignaturas values ("+a.getCodigo()+",'"+
                 a.getDescripcion()+"',"+a.getAnio()+",'"+a.getTurno()+"','"+
-                a.getSeccion()+"','"+a.getFecha_ini()+"','"+a.getFecha_fin()+"');");
+                a.getSeccion()+"','"+a.getFecha_ini().toString()+"','"+a.getFecha_fin().toString()+"');");
     }
     
     public boolean delete(int codigo) throws SQLException{
@@ -40,7 +41,7 @@ public class AsignaturaDao {
         ResultSet r = stm.executeQuery("select * from asignaturas where codigo = "+codigo+";");
         r.next();
         return new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
-                r.getString("turno"),r.getString("seccion"),r.getString("fecha_ini"),r.getString("fecha_fin"));
+                r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin"));
     }
     
     public LinkedList consultarAsignaturas() throws SQLException{
@@ -51,7 +52,7 @@ public class AsignaturaDao {
         r.next();
         while(r.next()){
             asignaturas.add(new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
-                r.getString("turno"),r.getString("seccion"),r.getString("fecha_ini"),r.getString("fecha_fin")));
+                r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin")));
         }
         return asignaturas;
     }
@@ -64,7 +65,7 @@ public class AsignaturaDao {
         r.next();
         while(r.next()){
             asignaturas.add(new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
-                r.getString("turno"),r.getString("seccion"),r.getString("fecha_ini"),r.getString("fecha_fin")));
+                r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin")));
         }
         return asignaturas;
     }

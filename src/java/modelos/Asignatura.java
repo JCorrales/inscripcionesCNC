@@ -5,6 +5,8 @@
  */
 package modelos;
 
+import java.sql.Date;
+
 /**
  *
  * @author Acer Aspire
@@ -15,13 +17,13 @@ public class Asignatura {
     private int anio;
     private String turno;
     private String seccion;
-    private String fecha_ini;
-    private String fecha_fin;
+    private Date fecha_ini;
+    private Date fecha_fin;
 
     public Asignatura() {
     }
 
-    public Asignatura(int codigo, String descripcion, int anio, String turno, String seccion, String fecha_ini, String fecha_fin) {
+    public Asignatura(int codigo, String descripcion, int anio, String turno, String seccion, Date fecha_ini, Date fecha_fin) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.anio = anio;
@@ -71,19 +73,19 @@ public class Asignatura {
         this.seccion = seccion;
     }
 
-    public String getFecha_ini() {
+    public Date getFecha_ini() {
         return fecha_ini;
     }
 
-    public void setFecha_ini(String fecha_ini) {
+    public void setFecha_ini(Date fecha_ini) {
         this.fecha_ini = fecha_ini;
     }
 
-    public String getFecha_fin() {
+    public Date getFecha_fin() {
         return fecha_fin;
     }
 
-    public void setFecha_fin(String fecha_fin) {
+    public void setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 
