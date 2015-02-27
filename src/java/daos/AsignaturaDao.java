@@ -35,11 +35,15 @@ public class AsignaturaDao {
         return stm.execute("delete from asignaturas where codigo ="+codigo+";");
     }
     
-    public Asignatura consultarPorCedula(int codigo) throws SQLException{
+    public Asignatura consultarPorCodigo(int codigo) throws SQLException{
         Statement stm;
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from asignaturas where codigo = "+codigo+";");
         r.next();
+        r.getInt("codigo");
+        if(r.wasNull())
+            throw new SQLException();
+
         return new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
                 r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin"));
     }
@@ -50,6 +54,10 @@ public class AsignaturaDao {
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from asignaturas");
         r.next();
+        r.getInt("codigo");
+        if(r.wasNull())
+            throw new SQLException();
+        r.previous();
         while(r.next()){
             asignaturas.add(new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
                 r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin")));
@@ -63,6 +71,10 @@ public class AsignaturaDao {
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from asignaturas where anio = "+anio);
         r.next();
+        r.getInt("codigo");
+        if(r.wasNull())
+            throw new SQLException();
+        r.previous();
         while(r.next()){
             asignaturas.add(new Asignatura(r.getInt("codigo"), r.getString("descripcion"),r.getInt("anio"), 
                 r.getString("turno"),r.getString("seccion"),r.getDate("fecha_ini"),r.getDate("fecha_fin")));

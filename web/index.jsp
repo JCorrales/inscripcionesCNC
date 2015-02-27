@@ -14,8 +14,9 @@
     </head>
     <body>
         <p>
-            <a href="InsertAlumnForm.jsp">insertar alumno</a><br>
-           <a href="InsertAsignaturaForm.jsp">insertar asignatura</a>
+            <a href="InsertAlumnForm.jsp">insertar alumno</a><br/>
+           <a href="InsertAsignaturaForm.jsp">insertar asignatura</a><br/>
+           <a href="SeleccionarAlumnoForm.jsp">inscribir alumno</a><br/>
         <p>
     </body>
 </html>

@@ -43,6 +43,12 @@ public class AlumnoDao {
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from alumnos where cedula = "+cedula+";");
         r.next();
+        try{
+            r.getInt("cedula");
+        }
+        catch(Exception ex){
+            return null;
+        }
         return new Alumno(r.getInt("cedula"), r.getString("nombre"),r.getString("apellido"), 
                 r.getString("direccion"),r.getString("telefono"),r.getInt("anio"));
     }
@@ -53,6 +59,10 @@ public class AlumnoDao {
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from alumnos");
         r.next();
+        r.getInt("cedula");
+        if(r.wasNull())
+            throw new SQLException();
+        r.previous();
         while(r.next()){
             alumnos.add(new Alumno(r.getInt("cedula"), r.getString("nombre"),r.getString("apellido"), 
                     r.getString("direccion"),r.getString("telefono"),r.getInt("anio")));
@@ -66,6 +76,11 @@ public class AlumnoDao {
         stm = conexion.createStatement();
         ResultSet r = stm.executeQuery("select * from alumnos where anio = "+anio);
         r.next();
+        r.next();
+        r.getInt("cedula");
+        if(r.wasNull())
+            throw new SQLException();
+        r.previous();
         while(r.next()){
             alumnos.add(new Alumno(r.getInt("cedula"), r.getString("nombre"),r.getString("apellido"), 
                     r.getString("direccion"),r.getString("telefono"),r.getInt("anio")));
